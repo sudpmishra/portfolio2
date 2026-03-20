@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { ArrowDown, Download, MapPin } from "lucide-react";
 import SplitText from "../animations/SplitText";
 import GradientText from "../animations/GradientText";
-import ParticleCanvas from "../animations/ParticleCanvas";
 import { personalInfo } from "../../data/mock";
 import Threads from "../animations/Threads";
 
