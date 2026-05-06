@@ -1,17 +1,34 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Send, MapPin, Github, Linkedin, Twitter, CheckCircle2, Loader2 } from 'lucide-react';
-import { personalInfo } from '../../data/mock';
-import GradientText from '../animations/GradientText';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  Mail,
+  Send,
+  MapPin,
+  Github,
+  Linkedin,
+  Twitter,
+  CheckCircle2,
+  Loader2,
+} from "lucide-react";
+import emailjs from "@emailjs/browser";
+import { personalInfo } from "../../data/mock";
+import GradientText from "../animations/GradientText";
+
+const EMAILJS_SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+const EMAILJS_AUTO_REPLY_TEMPLATE_ID =
+  process.env.REACT_APP_EMAILJS_AUTO_REPLY_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,12 +37,36 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setFormData({ name: '', email: '', message: '' });
-    setTimeout(() => setIsSubmitted(false), 3000);
+    setError("");
+    try {
+      const templateParams = {
+        from_name: formData.name,
+        email: formData.email,
+        message: formData.message,
+        from_email: formData.email,
+      };
+      await Promise.all([
+        emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          templateParams,
+          EMAILJS_PUBLIC_KEY,
+        ),
+        emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_AUTO_REPLY_TEMPLATE_ID,
+          templateParams,
+          EMAILJS_PUBLIC_KEY,
+        ),
+      ]);
+      setIsSubmitted(true);
+      setFormData({ name: "", email: "", message: "" });
+      setTimeout(() => setIsSubmitted(false), 3000);
+    } catch (err) {
+      setError("Something went wrong. Please try again or email me directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -44,14 +85,18 @@ const Contact = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <span className="text-green-400 font-mono text-lg mb-4 block">06. What's Next?</span>
+          <span className="text-green-400 font-mono text-lg mb-4 block">
+            06. What's Next?
+          </span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            <GradientText colors={['#22c55e', '#10b981', '#34d399', '#22c55e']}>
+            <GradientText colors={["#22c55e", "#10b981", "#34d399", "#22c55e"]}>
               Get In Touch
             </GradientText>
           </h2>
           <p className="text-gray-400 text-lg max-w-xl mx-auto">
-            I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+            I'm currently looking for new opportunities. Whether you have a
+            question or just want to say hi, I'll try my best to get back to
+            you!
           </p>
         </motion.div>
 
@@ -72,14 +117,20 @@ const Contact = () => {
               <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-4">
                 <CheckCircle2 className="w-8 h-8 text-green-400" />
               </div>
-              <h3 className="text-xl font-semibold text-white mb-2">Message Sent!</h3>
-              <p className="text-gray-400">Thanks for reaching out. I'll get back to you soon.</p>
+              <h3 className="text-xl font-semibold text-white mb-2">
+                Message Sent!
+              </h3>
+              <p className="text-gray-400">
+                Thanks for reaching out. I'll get back to you soon.
+              </p>
             </motion.div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-gray-400 text-sm mb-2">Name</label>
+                  <label className="block text-gray-400 text-sm mb-2">
+                    Name
+                  </label>
                   <input
                     type="text"
                     name="name"
@@ -91,7 +142,9 @@ const Contact = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-gray-400 text-sm mb-2">Email</label>
+                  <label className="block text-gray-400 text-sm mb-2">
+                    Email
+                  </label>
                   <input
                     type="email"
                     name="email"
@@ -104,7 +157,9 @@ const Contact = () => {
                 </div>
               </div>
               <div>
-                <label className="block text-gray-400 text-sm mb-2">Message</label>
+                <label className="block text-gray-400 text-sm mb-2">
+                  Message
+                </label>
                 <textarea
                   name="message"
                   value={formData.message}
@@ -115,6 +170,9 @@ const Contact = () => {
                   placeholder="Hi, I'd like to discuss a project..."
                 />
               </div>
+              {error && (
+                <p className="text-red-400 text-sm text-center">{error}</p>
+              )}
               <motion.button
                 type="submit"
                 disabled={isSubmitting}
