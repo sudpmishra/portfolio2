@@ -44,20 +44,39 @@ const webpackConfig = {
   },
   webpack: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
+      "@": path.resolve(__dirname, "src"),
     },
     configure: (webpackConfig) => {
+      const oneOfRule = webpackConfig.module.rules.find((rule) =>
+        Array.isArray(rule.oneOf),
+      );
+      if (oneOfRule) {
+        oneOfRule.oneOf.unshift({
+          test: /\.(md|mdx)$/,
+          use: [
+            {
+              loader: require.resolve("babel-loader"),
+              options: {
+                presets: [require.resolve("babel-preset-react-app")],
+              },
+            },
+            {
+              loader: require.resolve("@mdx-js/loader"),
+            },
+          ],
+        });
+      }
 
       // Add ignored patterns to reduce watched directories
-        webpackConfig.watchOptions = {
-          ...webpackConfig.watchOptions,
-          ignored: [
-            '**/node_modules/**',
-            '**/.git/**',
-            '**/build/**',
-            '**/dist/**',
-            '**/coverage/**',
-            '**/public/**',
+      webpackConfig.watchOptions = {
+        ...webpackConfig.watchOptions,
+        ignored: [
+          "**/node_modules/**",
+          "**/.git/**",
+          "**/build/**",
+          "**/dist/**",
+          "**/coverage/**",
+          "**/public/**",
         ],
       };
 
@@ -65,6 +84,13 @@ const webpackConfig = {
       if (config.enableHealthCheck && healthPluginInstance) {
         webpackConfig.plugins.push(healthPluginInstance);
       }
+
+      webpackConfig.resolve.extensions = [
+        ".mdx",
+        ".md",
+        ...(webpackConfig.resolve.extensions || []),
+      ];
+
       return webpackConfig;
     },
   },
@@ -84,7 +110,11 @@ webpackConfig.devServer = (devServerConfig) => {
   }
 
   // Add health check endpoints if enabled
-  if (config.enableHealthCheck && setupHealthEndpoints && healthPluginInstance) {
+  if (
+    config.enableHealthCheck &&
+    setupHealthEndpoints &&
+    healthPluginInstance
+  ) {
     const originalSetupMiddlewares = devServerConfig.setupMiddlewares;
 
     devServerConfig.setupMiddlewares = (middlewares, devServer) => {
