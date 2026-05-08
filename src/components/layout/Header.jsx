@@ -1,7 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Github, Linkedin, Twitter, Mail } from 'lucide-react';
-import { navLinks, personalInfo } from '../../data/mock';
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Menu,
+  X,
+  Github,
+  Linkedin,
+  Twitter,
+  Mail,
+  FileText,
+} from "lucide-react";
+import { navLinks, personalInfo } from "../../data/mock";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -11,14 +19,14 @@ const Header = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToSection = (href) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
     setIsMobileMenuOpen(false);
   };
@@ -26,9 +34,7 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-[#111113] border-b border-white/5'
-          : 'bg-transparent'
+        isScrolled ? "bg-[#111113] border-b border-white/5" : "bg-transparent"
       }`}
     >
       <div className="max-w-6xl mx-auto px-6">
@@ -40,7 +46,7 @@ const Header = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
             <span className="text-green-400">&lt;</span>
             <span>SM</span>
@@ -62,7 +68,9 @@ const Header = () => {
                   whileHover={{ y: -2 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <span className="text-green-400 mr-1 font-mono text-xs">0{index + 1}.</span>
+                  <span className="text-green-400 mr-1 font-mono text-xs">
+                    0{index + 1}.
+                  </span>
                   {link.name}
                 </motion.button>
               </li>
@@ -99,8 +107,13 @@ const Header = () => {
               className="text-gray-400 hover:text-green-400 transition-colors"
               title="Upwork Profile"
             >
-              <svg width={18} height={18} viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.548-1.405-.002-2.543-1.142-2.545-2.548V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.686 1.109 3 0 5.439-2.452 5.439-5.45 0-3-2.439-5.439-5.439-5.439z"/>
+              <svg
+                width={18}
+                height={18}
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.548-1.405-.002-2.543-1.142-2.545-2.548V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.686 1.109 3 0 5.439-2.452 5.439-5.45 0-3-2.439-5.439-5.439-5.439z" />
               </svg>
             </a>
             <a
@@ -108,6 +121,13 @@ const Header = () => {
               className="text-gray-400 hover:text-green-400 transition-colors"
             >
               <Mail size={18} />
+            </a>
+            <a
+              href="/blog"
+              className="text-gray-400 hover:text-green-400 transition-colors"
+              title="Blog"
+            >
+              <FileText size={18} />
             </a>
           </motion.div>
 
@@ -143,7 +163,9 @@ const Header = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <span className="text-green-400 mr-2 font-mono text-sm">0{index + 1}.</span>
+                  <span className="text-green-400 mr-2 font-mono text-sm">
+                    0{index + 1}.
+                  </span>
                   {link.name}
                 </motion.button>
               ))}
@@ -171,8 +193,13 @@ const Header = () => {
                   className="text-gray-400 hover:text-green-400 transition-colors"
                   title="Upwork Profile"
                 >
-                  <svg width={24} height={24} viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.548-1.405-.002-2.543-1.142-2.545-2.548V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.686 1.109 3 0 5.439-2.452 5.439-5.45 0-3-2.439-5.439-5.439-5.439z"/>
+                  <svg
+                    width={24}
+                    height={24}
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.548-1.405-.002-2.543-1.142-2.545-2.548V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.686 1.109 3 0 5.439-2.452 5.439-5.45 0-3-2.439-5.439-5.439-5.439z" />
                   </svg>
                 </a>
                 <a
@@ -182,8 +209,13 @@ const Header = () => {
                   className="text-gray-400 hover:text-green-400 transition-colors"
                   title="Print Resume"
                 >
-                  <svg width={24} height={24} viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/>
+                  <svg
+                    width={24}
+                    height={24}
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z" />
                   </svg>
                 </a>
                 <a
@@ -193,6 +225,13 @@ const Header = () => {
                   className="text-gray-400 hover:text-green-400 transition-colors"
                 >
                   <Twitter size={24} />
+                </a>
+                <a
+                  href="/blog"
+                  className="text-gray-400 hover:text-green-400 transition-colors"
+                  title="Blog"
+                >
+                  <FileText size={24} />
                 </a>
               </div>
             </nav>
