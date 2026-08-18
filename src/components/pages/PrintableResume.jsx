@@ -16,7 +16,9 @@ import {
 } from "../../data/mock";
 
 const PrintableResume = () => {
-  const isMac = navigator.userAgentData?.platform === "macOS";
+  const isMac =
+    typeof navigator !== "undefined" &&
+    navigator.userAgentData?.platform === "macOS";
   const command = isMac ? "Cmd + P" : "Ctrl + P";
 
   return (

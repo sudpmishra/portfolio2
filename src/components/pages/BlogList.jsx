@@ -7,7 +7,7 @@ import {
   Info,
   PencilLine,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { getAllBlogPosts } from "@/lib/blog";
 import {
   Tooltip,
@@ -33,7 +33,7 @@ const BlogList = () => {
         >
           <div className="flex flex-col items-start justify-between gap-4 mb-5">
             <Link
-              to="/"
+              href="/"
               className="text-sm font-medium text-gray-300 hover:text-green-400 transition-colors flex gap-2 items-center"
             >
               <ArrowLeftCircle size={14} className="rotate-45" />
@@ -114,7 +114,7 @@ const BlogList = () => {
 
                 <h2 className="text-2xl md:text-[1.7rem] font-semibold mb-3 leading-snug">
                   <Link
-                    to={`/blog/${post.slug}`}
+                    href={`/blog/${post.slug}`}
                     className="inline-flex items-start gap-2 hover:text-green-400 transition-colors"
                   >
                     <span className="line-clamp-1">{post.title}</span>

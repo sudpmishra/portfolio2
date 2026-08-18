@@ -234,7 +234,7 @@ export default function FaultyTerminal({
   tint = '#ffffff',
   mouseReact = true,
   mouseStrength = 0.2,
-  dpr = Math.min(window.devicePixelRatio || 1, 1.5), // Reduced DPR for Windows
+  dpr = typeof window !== 'undefined' ? Math.min(window.devicePixelRatio || 1, 1.5) : 1, // Reduced DPR for Windows
   pageLoadAnimation = true,
   brightness = 1,
   className,

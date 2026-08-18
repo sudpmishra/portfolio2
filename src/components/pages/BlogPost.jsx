@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, CalendarDays, Clock3 } from "lucide-react";
-import { Link, useParams } from "react-router-dom";
+import Link from "next/link";
 import { getBlogPostBySlug } from "@/lib/blog";
 
 const mdxComponents = {
@@ -18,8 +18,7 @@ const mdxComponents = {
   pre: "pre",
 };
 
-const BlogPost = () => {
-  const { slug } = useParams();
+const BlogPost = ({ slug }) => {
   const post = getBlogPostBySlug(slug || "");
 
   if (!post) {
@@ -28,7 +27,7 @@ const BlogPost = () => {
         <div className="max-w-3xl mx-auto">
           <p className="text-gray-400 mb-4">Post not found.</p>
           <Link
-            to="/blog"
+            href="/blog"
             className="text-green-400 hover:text-green-300 transition-colors"
           >
             Return to blog list
@@ -51,7 +50,7 @@ const BlogPost = () => {
             This post exists, but its MDX content could not be rendered.
           </p>
           <Link
-            to="/blog"
+            href="/blog"
             className="text-green-400 hover:text-green-300 transition-colors"
           >
             Return to blog list
@@ -83,7 +82,7 @@ const BlogPost = () => {
           transition={{ duration: 0.45 }}
         >
           <Link
-            to="/blog"
+            href="/blog"
             className="inline-flex items-center gap-2 text-sm text-green-400 hover:text-green-300 transition-colors"
           >
             <ArrowLeft size={15} />

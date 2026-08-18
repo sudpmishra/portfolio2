@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Twitter, Mail, Heart, ArrowUp } from "lucide-react";
 import { personalInfo } from "../../data/mock";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -24,7 +24,7 @@ const Footer = () => {
             transition={{ duration: 0.5 }}
           >
             <a
-              to="#"
+              href="#"
               className="text-xl font-bold text-white flex items-center gap-2"
             >
               <span className="text-green-400">&lt;</span>
@@ -35,7 +35,7 @@ const Footer = () => {
               Building the future, one line at a time
             </p>
             <Link
-              to="/blog"
+              href="/blog"
               className="text-green-400 hover:text-green-300 transition-colors text-sm font-medium mt-3 inline-flex items-center gap-1"
             >
               Blog & Notes
