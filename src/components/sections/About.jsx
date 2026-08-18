@@ -1,16 +1,16 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Code2, Briefcase, Coffee, Sparkles } from 'lucide-react';
-import BlurText from '../animations/BlurText';
-import AnimatedCard from '../animations/AnimatedCard';
-import { personalInfo } from '../../data/mock';
+import React from "react";
+import { motion } from "framer-motion";
+import { Code2, Briefcase, Coffee, Sparkles } from "lucide-react";
+import BlurText from "../animations/BlurText";
+import AnimatedCard from "../animations/AnimatedCard";
+import { personalInfo } from "../../data/mock";
 
 const About = () => {
   const stats = [
-    { icon: Briefcase, value: '8+', label: 'Years Experience' },
-    { icon: Code2, value: '20+', label: 'Projects Completed' },
-    { icon: Coffee, value: '∞', label: 'Cups of Coffee' },
-    { icon: Sparkles, value: '100%', label: 'Client Satisfaction' }
+    { icon: Briefcase, value: "9+", label: "Years Experience" },
+    { icon: Code2, value: "20+", label: "Projects Completed" },
+    { icon: Coffee, value: "∞", label: "Cups of Coffee" },
+    { icon: Sparkles, value: "100%", label: "Client Satisfaction" },
   ];
 
   return (
@@ -31,7 +31,9 @@ const About = () => {
           transition={{ duration: 0.5 }}
         >
           <span className="text-green-400 font-mono text-lg">01.</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-white">About Me</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white">
+            About Me
+          </h2>
           <div className="flex-1 h-px bg-gradient-to-r from-green-500/50 to-transparent max-w-xs" />
         </motion.div>
 
@@ -56,7 +58,14 @@ const About = () => {
                 Here are a few technologies I've been working with recently:
               </p>
               <div className="grid grid-cols-2 gap-2">
-                {['JavaScript (ES6+)', 'React & React Native', 'Node.js', 'Python', 'Ruby on Rails', 'GraphQL'].map((tech, i) => (
+                {[
+                  "JavaScript (ES6+)",
+                  "React & React Native",
+                  "Node.js",
+                  "Python",
+                  "Ruby on Rails",
+                  "GraphQL",
+                ].map((tech, i) => (
                   <motion.div
                     key={tech}
                     className="flex items-center gap-2 text-gray-300 text-sm"
@@ -85,7 +94,9 @@ const About = () => {
                   <div className="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center mb-4 group-hover:bg-green-500/20 transition-colors">
                     <stat.icon className="w-6 h-6 text-green-400" />
                   </div>
-                  <h3 className="text-3xl font-bold text-white mb-1">{stat.value}</h3>
+                  <h3 className="text-3xl font-bold text-white mb-1">
+                    {stat.value}
+                  </h3>
                   <p className="text-gray-500 text-sm">{stat.label}</p>
                 </div>
               </AnimatedCard>

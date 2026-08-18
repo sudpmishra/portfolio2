@@ -46,6 +46,18 @@ export const skills = {
 export const experiences = [
   {
     id: 1,
+    company: "Startup Medic",
+    positions: [
+      {
+        title: "Senior Software Engineer (Remote)",
+        description:
+          "Played a pivotal role in architecting and developing scalable applications for Startup Medic, translating business requirements into high-quality software while optimizing performance, reliability, and engineering standards.",
+        period: "Nov 2025 - Present",
+      },
+    ],
+  },
+  {
+    id: 2,
     company: "MusicGPT",
     url: "https://musicgpt.com/",
     positions: [
@@ -58,7 +70,7 @@ export const experiences = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     company: "Aerion Technologies",
     url: "https://aerion.com.au/",
     positions: [
@@ -77,7 +89,7 @@ export const experiences = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     company: "CodeDemon",
     url: "http://codedemon.org/",
     positions: [
@@ -90,7 +102,7 @@ export const experiences = [
     ],
   },
   {
-    id: 4,
+    id: 5,
     company: "CloudChomp Inc",
     url: "https://www.cloudchomp.com/",
     positions: [
@@ -103,7 +115,7 @@ export const experiences = [
     ],
   },
   {
-    id: 5,
+    id: 6,
     company: "Javra Software",
     url: "https://javra.com/",
     positions: [
@@ -116,7 +128,7 @@ export const experiences = [
     ],
   },
   {
-    id: 6,
+    id: 7,
     company: "Deerwalk Inc",
     url: "https://deerwalk.edu.np/DWIT/",
     positions: [
@@ -133,6 +145,23 @@ export const experiences = [
 export const projects = [
   {
     id: 1,
+    title: "Equity Quotient (EQ)",
+    description:
+      "Equity Quotient is essentially a data analytics and AI platform for understanding populations and stakeholders, particularly in healthcare and ESG. It combines socioeconomic, demographic, health, and other datasets to help organizations make decisions.",
+    tech: [
+      "Next.js",
+      "Python",
+      "Drizzle ORM",
+      "AWS",
+      "TypeScript",
+      "AI Integration",
+    ],
+    github: "",
+    live: "https://equityquotient.io/",
+    featured: true,
+  },
+  {
+    id: 1.5,
     title: "MusicGPT Platform",
     description:
       "An innovative music-focused AI platform built with modern web technologies, featuring scalable architecture and enhanced user engagement through cutting-edge features.",
@@ -179,7 +208,7 @@ export const projects = [
     tech: ["jQuery", "Grails", "PostgreSQL"],
     github: "",
     live: "",
-    featured: false,
+    featured: true,
   },
 ];
 

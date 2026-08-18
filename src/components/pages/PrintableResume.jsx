@@ -1,5 +1,13 @@
 import React from "react";
 import {
+  MapPin,
+  Mail,
+  Phone,
+  Github,
+  Linkedin,
+  Star,
+} from "lucide-react";
+import {
   personalInfo,
   skills,
   experiences,
@@ -10,234 +18,208 @@ import {
 const PrintableResume = () => {
   const isMac = navigator.userAgentData?.platform === "macOS";
   const command = isMac ? "Cmd + P" : "Ctrl + P";
+
   return (
-    <div className="print-container bg-white text-black min-h-screen p-8">
-      {/* Print Styles */}
+    <div className="print-page min-h-screen flex items-start justify-center p-6">
       <style jsx>{`
         @media print {
           body {
             margin: 0;
             padding: 0;
-            background: white !important;
             -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+          }
+          .print-page {
+            padding: 0 !important;
+            background: white !important;
           }
           .print-container {
             box-shadow: none !important;
             margin: 0 !important;
-            padding: 20px !important;
-            background: white !important;
-            color: black !important;
-          }
-          .page-break {
-            page-break-before: always;
+            min-height: 0 !important;
+            display: grid !important;
+            grid-template-columns: 1fr 320px !important;
           }
           .no-print {
             display: none !important;
           }
-          .green-accent {
-            color: #22c55e !important;
-          }
-          .green-border {
-            border-color: #22c55e !important;
-          }
-          .green-bg {
-            background-color: #22c55e !important;
-            color: white !important;
-          }
           @page {
-            margin: 0.5in;
+            margin: 0.4in;
             size: A4;
-          }
-        }
-
-        @media screen {
-          .print-container {
-            max-width: 8.5in;
-            margin: 0 auto;
-            background: white;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            min-height: 11in;
-          }
-          .green-accent {
-            color: #22c55e;
-          }
-          .green-border {
-            border-color: #22c55e;
-          }
-          .green-bg {
-            background-color: #22c55e;
-            color: white;
           }
         }
       `}</style>
 
-      {/* Header Section */}
-      <header className="flex items-start gap-6 mb-8 border-b-2 green-border pb-6">
-        {/* Profile Image */}
-        <div className="flex-shrink-0">
-          <img
-            src={personalInfo.avatar}
-            alt={personalInfo.name}
-            className="w-24 h-24 rounded-full object-cover border-3 border-gray-300"
-            onError={(e) => {
-              e.target.style.display = "none";
-            }}
-          />
-        </div>
+      <div className="print-container w-full max-w-[8.5in] bg-white shadow-2xl grid grid-cols-[1fr_320px]">
+        {/* Main column */}
+        <div className="p-10">
+          {/* Header */}
+          <header className="mb-10 pb-6 border-b-2 border-green-500/40">
+            <h1 className="text-4xl font-bold text-gray-900 tracking-tight">
+              {personalInfo.name}
+            </h1>
+            <h2 className="text-lg font-mono text-green-600 mt-2">
+              {personalInfo.title}
+            </h2>
+            <p className="text-gray-600 italic mt-3">{personalInfo.tagline}</p>
 
-        {/* Header Content */}
-        <div className="flex-1">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            {personalInfo.name}
-          </h1>
-          <h2 className="text-xl green-accent mb-4 font-semibold">
-            {personalInfo.title}
-          </h2>
-          <p className="text-gray-800 italic mb-4">{personalInfo.tagline}</p>
-          <div className="flex flex-wrap gap-4 text-sm text-gray-600">
-            <span className="flex items-center gap-1">
-              <span className="green-accent">📍</span> {personalInfo.location}
-            </span>
-            <span className="flex items-center gap-1">
-              <span className="green-accent">📧</span> {personalInfo.email}
-            </span>
-            <span className="flex items-center gap-1">
-              <span className="green-accent">📞</span> {personalInfo.mobile}
-            </span>
-            <a
-              href={personalInfo.social.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1"
-            >
-              <span className="green-accent">🔗</span>{" "}
-              {personalInfo.social.github}
-            </a>
-            <a
-              href={personalInfo.social.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1"
-            >
-              <span className="green-accent">💼</span>{" "}
-              {personalInfo.social.linkedin}
-            </a>
-          </div>
-        </div>
-      </header>
-
-      {/* About Section */}
-      <section className="mb-8">
-        <h3 className="text-2xl font-bold green-accent mb-4 border-b green-border pb-2">
-          Professional Summary
-        </h3>
-        <p className="text-gray-800 leading-relaxed">{personalInfo.about}</p>
-      </section>
-
-      {/* Skills Section */}
-      <section className="mb-8">
-        <h3 className="text-2xl font-bold green-accent mb-4 border-b green-border pb-2">
-          Technical Skills
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {Object.entries(skills).map(([category, skillList]) => (
-            <div key={category} className="mb-4">
-              <h4 className="font-semibold green-accent mb-2 capitalize text-sm">
-                {category.toUpperCase()}:
-              </h4>
-              <p className="text-gray-700 text-sm">{skillList.join(" • ")}</p>
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-600 mt-4">
+              <span className="flex items-center gap-1.5">
+                <MapPin size={14} className="text-green-600" />
+                {personalInfo.location}
+              </span>
+              <span className="flex items-center gap-1.5">
+                <Mail size={14} className="text-green-600" />
+                {personalInfo.email}
+              </span>
+              <span className="flex items-center gap-1.5">
+                <Phone size={14} className="text-green-600" />
+                {personalInfo.mobile}
+              </span>
+              <a
+                href={personalInfo.social.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 hover:text-green-600"
+              >
+                <Github size={14} className="text-green-600" />
+                GitHub
+              </a>
+              <a
+                href={personalInfo.social.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 hover:text-green-600"
+              >
+                <Linkedin size={14} className="text-green-600" />
+                LinkedIn
+              </a>
             </div>
-          ))}
+          </header>
+
+          {/* Summary */}
+          <section className="mb-10">
+            <h3 className="text-xs font-mono font-semibold tracking-widest text-green-600 uppercase mb-3">
+              Summary
+            </h3>
+            <p className="text-gray-700 leading-relaxed">
+              {personalInfo.about}
+            </p>
+          </section>
+
+          {/* Experience */}
+          <section>
+            <h3 className="text-xs font-mono font-semibold tracking-widest text-green-600 uppercase mb-4">
+              Experience
+            </h3>
+            <div className="space-y-8">
+              {experiences.map((exp) => (
+                <div key={exp.id}>
+                  {exp.positions.map((pos, posIndex) => (
+                    <div key={posIndex} className={posIndex > 0 ? "mt-3" : ""}>
+                      <div className="flex justify-between items-baseline gap-4 flex-wrap">
+                        <h4 className="font-semibold text-gray-900">
+                          {pos.title}
+                        </h4>
+                        {pos.period && (
+                          <span className="text-xs font-mono text-gray-500 whitespace-nowrap">
+                            {pos.period}
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-sm text-green-600 font-medium mb-1.5">
+                        {exp.company}
+                      </p>
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        {pos.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </section>
         </div>
-      </section>
 
-      {/* Experience Section */}
-      <section className="mb-8">
-        <h3 className="text-2xl font-bold green-accent mb-4 border-b green-border pb-2">
-          Professional Experience
-        </h3>
-        {experiences.map((exp, index) => (
-          <div key={exp.id} className="mb-6">
-            <div className="mb-4">
-              <h4 className="text-lg font-bold text-gray-900">{exp.company}</h4>
-              <p className="text-sm green-accent mb-3 font-medium">{exp.url}</p>
-
-              {exp.positions.map((pos, posIndex) => (
-                <div key={posIndex} className="ml-4 mb-4">
-                  <div className="flex justify-between items-start mb-2">
-                    <h5 className="font-semibold text-gray-800">{pos.title}</h5>
-                    <span className="text-sm green-accent font-semibold">
-                      {pos.period}
-                    </span>
+        {/* Sidebar */}
+        <div className="bg-[#0d0d0f] text-gray-300 p-8">
+          {/* Projects */}
+          <section className="mb-10">
+            <h3 className="text-xs font-mono font-semibold tracking-widest text-green-400 uppercase mb-4 pb-2 border-b border-white/10">
+              Projects
+            </h3>
+            <div className="space-y-4">
+              {projects
+                .filter((p) => p.featured)
+                .map((project) => (
+                  <div key={project.id}>
+                    <h4 className="text-sm font-semibold text-white">
+                      {project.title}
+                    </h4>
+                    <p className="text-xs text-gray-400 leading-relaxed mt-1">
+                      {project.description}
+                    </p>
+                    <p className="text-xs text-green-400/80 font-mono mt-1.5">
+                      {project.tech.join(" · ")}
+                    </p>
                   </div>
-                  <p className="text-gray-700 text-sm leading-relaxed">
-                    {pos.description}
+                ))}
+            </div>
+          </section>
+
+          {/* Skills */}
+          <section className="mb-10">
+            <h3 className="text-xs font-mono font-semibold tracking-widest text-green-400 uppercase mb-4 pb-2 border-b border-white/10">
+              Skills
+            </h3>
+            <div className="space-y-3">
+              {Object.entries(skills).map(([category, skillList]) => (
+                <div key={category}>
+                  <h4 className="text-[11px] font-mono text-green-400/80 uppercase mb-1">
+                    {category}
+                  </h4>
+                  <p className="text-xs text-gray-400 leading-relaxed">
+                    {skillList.join(" · ")}
                   </p>
                 </div>
               ))}
             </div>
-            {index < experiences.length - 1 && (
-              <hr className="border-gray-300" />
-            )}
-          </div>
-        ))}
-      </section>
+          </section>
 
-      {/* Projects Section */}
-      <section className="mb-8">
-        <h3 className="text-2xl font-bold green-accent mb-4 border-b green-border pb-2">
-          Key Projects
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {projects.map((project) => (
-            <div
-              key={project.id}
-              className="mb-4 p-4 border green-border rounded"
-            >
-              <h4 className="font-bold text-gray-900 mb-2">{project.title}</h4>
-              <p className="text-gray-700 text-sm mb-2">
-                {project.description}
-              </p>
-              <div className="text-xs green-accent font-semibold">
-                <strong>Tech:</strong> {project.tech.join(" • ")}
-              </div>
+          {/* Education */}
+          <section>
+            <h3 className="text-xs font-mono font-semibold tracking-widest text-green-400 uppercase mb-4 pb-2 border-b border-white/10">
+              Education
+            </h3>
+            <div className="space-y-4">
+              {education.map((edu) => (
+                <div key={edu.id} className="flex gap-2.5">
+                  <Star
+                    size={13}
+                    className="text-green-400 mt-0.5 shrink-0"
+                  />
+                  <div>
+                    <h4 className="text-sm font-semibold text-white leading-snug">
+                      {edu.degree}
+                    </h4>
+                    <p className="text-xs text-gray-400">{edu.institution}</p>
+                    <p className="text-xs font-mono text-green-400/70 mt-0.5">
+                      {edu.period}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </section>
         </div>
-      </section>
+      </div>
 
-      {/* Education Section */}
-      <section className="mb-8">
-        <h3 className="text-2xl font-bold green-accent mb-4 border-b green-border pb-2">
-          Education
-        </h3>
-        {education.map((edu) => (
-          <div key={edu.id} className="mb-3">
-            <div className="flex justify-between items-start">
-              <div>
-                <h4 className="font-semibold text-gray-900">{edu.degree}</h4>
-                <p className="text-gray-700 text-sm">{edu.institution}</p>
-              </div>
-              <span className="text-sm green-accent font-semibold">
-                {edu.period}
-              </span>
-            </div>
-          </div>
-        ))}
-      </section>
-
-      {/* Footer */}
-      <footer className="mt-12 pt-6 border-t green-border text-center text-sm text-gray-600">
-        <p>Generated from portfolio data • {new Date().toLocaleDateString()}</p>
-        <div className="no-print mt-4">
-          <button
-            onClick={() => window.print()}
-            className="green-bg px-6 py-2 rounded hover:bg-green-600 transition-colors font-semibold"
-          >
-            Print Resume ({command})
-          </button>
-        </div>
-      </footer>
+      <button
+        onClick={() => window.print()}
+        className="no-print fixed bottom-6 right-6 bg-green-500 hover:bg-green-400 text-black font-semibold px-6 py-3 rounded-xl shadow-lg transition-colors"
+      >
+        Print Resume ({command})
+      </button>
     </div>
   );
 };
