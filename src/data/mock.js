@@ -1,13 +1,13 @@
 // Portfolio Mock Data - Fetched from reference portfolio
 export const personalInfo = {
   name: "Sudeep Mishra",
-  title: "Senior Software Engineer",
+  title: "Senior Full-Stack Software Engineer & Technical Consultant",
   location: "Kathmandu, Nepal",
   mobile: "+977 9849943171",
   email: "sudeep014@gmail.com",
   tagline: "Building digital experiences with clean code",
   about:
-    "I am an experienced Computer Engineer with a great dedication to my work and I am highly organized and professional. I am passionate about research and can apply my technical knowledge to software development.",
+    "I'm a full-stack engineer specializing in Next.js, React, and TypeScript, building production systems that hold up under real traffic, not just demos. My approach centers on server-first architecture — App Router, RSC, and deliberate rendering strategy (SSR/SSG/ISR) — to ship interfaces that are fast by default and cheap to run at scale. I solve the problems teams hit past the prototype stage: eliminating client-server waterfalls, cutting Core Web Vitals regressions, and designing caching and data layers that stay correct under concurrent load.",
   avatar: "/image.jpg",
   social: {
     github: "https://github.com/sudpmishra",
@@ -146,8 +146,11 @@ export const projects = [
   {
     id: 1,
     title: "Equity Quotient (EQ)",
-    description:
-      "Equity Quotient is essentially a data analytics and AI platform for understanding populations and stakeholders, particularly in healthcare and ESG. It combines socioeconomic, demographic, health, and other datasets to help organizations make decisions.",
+    description: [
+      "Built the data-ingestion and query layer on Next.js App Router with Drizzle ORM over a multi-source schema (socioeconomic, demographic, health) so large joined queries stay type-safe end to end.",
+      "Split rendering by route segment — static ISR for population/report pages that update on a scheduled revalidation window, streaming SSR for AI-generated insight views — to keep TTFB low without serving stale analytics.",
+      "Deployed on AWS with edge caching in front of read-heavy endpoints, cutting repeated-query load on the analytics DB during ESG reporting spikes.",
+    ],
     tech: [
       "Next.js",
       "Python",
@@ -163,8 +166,11 @@ export const projects = [
   {
     id: 1.5,
     title: "MusicGPT Platform",
-    description:
-      "An innovative music-focused AI platform built with modern web technologies, featuring scalable architecture and enhanced user engagement through cutting-edge features.",
+    description: [
+      "Led infrastructure migration to a decoupled Next.js frontend / NestJS API architecture, replacing a monolithic setup and driving a 30% improvement in application performance.",
+      "Introduced route-level code splitting and image/asset optimization on the Next.js side, reducing largest-contentful-paint on core generation flows.",
+      "Designed Prisma-backed data access patterns with connection pooling tuned for concurrent AI-generation jobs, avoiding pool exhaustion under bursty load.",
+    ],
     tech: ["Next.js", "NestJS", "Prisma ORM", "AWS", "TypeScript"],
     github: "",
     live: "https://musicgpt.com/",
@@ -173,8 +179,11 @@ export const projects = [
   {
     id: 2,
     title: "MyHome Cleaning App",
-    description:
-      "A comprehensive cleaning service booking platform built with Next.js, featuring real-time scheduling, payment integration, and admin dashboard.",
+    description: [
+      "Set up the Next.js project infrastructure and deployment pipeline from scratch, establishing coding standards that the team scaled the app on.",
+      "Built the booking flow with Server Actions and API routes for real-time slot availability and payment integration, avoiding double-booking under concurrent requests.",
+      "Used SSG for marketing/service pages and SSR for the authenticated admin dashboard, keeping public pages fast while dashboard data stayed live.",
+    ],
     tech: ["Next.js", "React", "Node.js", "PostgreSQL"],
     github: "",
     live: "",

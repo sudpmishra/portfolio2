@@ -2,12 +2,70 @@ import Script from "next/script";
 import "./globals.css";
 import "./App.css";
 
+const siteUrl = "https://sudeepmishra.info.np";
+const title =
+  "Sudeep Mishra | Senior Full-Stack Software Engineer & Technical Consultant";
+const description =
+  "Sudeep Mishra is a senior full-stack engineer specializing in Next.js, React, and TypeScript — building server-first web architecture (App Router, SSR/SSG/ISR), performant UIs, and scalable API layers.";
+
 export const metadata = {
-  title: "Sudeep Mishra | Fullstack Developer",
-  description:
-    "A portfolio website showcasing the work and projects of Sudeep Mishra, a fullstack developer.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: title,
+    template: "%s | Sudeep Mishra",
+  },
+  description,
+  keywords: [
+    "Sudeep Mishra",
+    "Senior Full-Stack Software Engineer",
+    "Next.js Developer",
+    "React Developer",
+    "TypeScript Engineer",
+    "App Router",
+    "Server Components",
+    "Web Performance Engineer",
+    "Technical Consultant",
+  ],
+  authors: [{ name: "Sudeep Mishra", url: siteUrl }],
+  creator: "Sudeep Mishra",
+  alternates: {
+    canonical: siteUrl,
+  },
   icons: {
     icon: "/favicon.ico",
+  },
+  openGraph: {
+    type: "website",
+    url: siteUrl,
+    siteName: "Sudeep Mishra",
+    title,
+    description,
+    locale: "en_US",
+    images: [
+      {
+        url: "/image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Sudeep Mishra — Senior Full-Stack Software Engineer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/image.jpg"],
+    creator: "@sudpmishra",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -17,10 +75,45 @@ export const viewport = {
   themeColor: "#000000",
 };
 
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Sudeep Mishra",
+  jobTitle: "Senior Full-Stack Software Engineer & Technical Consultant",
+  url: siteUrl,
+  image: `${siteUrl}/image.jpg`,
+  email: "mailto:sudeep014@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Kathmandu",
+    addressCountry: "NP",
+  },
+  sameAs: [
+    "https://github.com/sudpmishra",
+    "https://linkedin.com/in/sudeep014",
+    "https://twitter.com/sudpmishra",
+  ],
+  knowsAbout: [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Node.js",
+    "Server-Side Rendering",
+    "Web Performance",
+  ],
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
+        <Script
+          id="person-jsonld"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+        >
+          {JSON.stringify(personJsonLd)}
+        </Script>
         {children}
         <Script id="posthog-init" strategy="afterInteractive">
           {`

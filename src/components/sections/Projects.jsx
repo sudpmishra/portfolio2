@@ -124,7 +124,24 @@ export default project;`}
                     {project.title}
                   </h3>
                   <div className="bg-[#1a1c1e] border border-white/5 rounded-xl p-6 mb-4">
-                    <p className="text-gray-400">{project.description}</p>
+                    {Array.isArray(project.description) ? (
+                      <ul
+                        className={`space-y-2 text-gray-400 text-sm ${
+                          index % 2 === 0 ? "" : "md:text-right"
+                        }`}
+                      >
+                        {project.description.map((bullet, i) => (
+                          <li key={i} className="flex gap-2 items-start">
+                            <span className="text-green-400 mt-1 shrink-0">
+                              ▹
+                            </span>
+                            <span>{bullet}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="text-gray-400">{project.description}</p>
+                    )}
                   </div>
                   <div
                     className={`flex flex-wrap gap-2 ${

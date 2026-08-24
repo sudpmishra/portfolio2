@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   MapPin,
@@ -159,7 +161,9 @@ const PrintableResume = () => {
                       {project.title}
                     </h4>
                     <p className="text-xs text-gray-400 leading-relaxed mt-1">
-                      {project.description}
+                      {Array.isArray(project.description)
+                        ? project.description.join(" ")
+                        : project.description}
                     </p>
                     <p className="text-xs text-green-400/80 font-mono mt-1.5">
                       {project.tech.join(" · ")}
