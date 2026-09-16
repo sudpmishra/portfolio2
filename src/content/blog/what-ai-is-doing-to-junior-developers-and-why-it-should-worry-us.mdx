@@ -1,0 +1,69 @@
+export const meta = {
+  title: "What AI Is Doing to Junior Developers, and Why It Should Worry Us",
+  excerpt:
+    "AI is quietly closing the door juniors used to walk through, and the industry hasn't figured out what replaces it yet.",
+  date: "2026-09-16",
+  tags: ["AI", "Junior Developers", "Industry"],
+  readingTime: "10 min read",
+  bannerImage:
+    "https://images.unsplash.com/photo-1770159116807-9b2a7bb82294?auto=format&fit=crop&w=1600&q=80",
+  bannerAlt:
+    "A developer in a hoodie typing on a laptop late at night",
+};
+
+A few months ago a hiring manager friend of mine told me something that stuck with me: her team hadn't hired a junior developer in over a year. Not because the budget wasn't there. Because she genuinely couldn't justify it anymore. "Why would I hire someone I have to train for six months," she said, "when I can give the same ticket to a senior with an AI assistant and get it done by Thursday?"
+
+I didn't have a good answer for her. I'm not sure the industry does either.
+
+![A developer working alone on a laptop in a low-light office](https://images.unsplash.com/photo-1758876204245-ee540a3af69f?auto=format&fit=crop&w=1400&q=80)
+
+## The rungs are disappearing from the ladder
+
+For as long as software has existed as a profession, junior roles served a specific, almost boring purpose: give someone low-stakes, well-understood work (fix the small bugs, write the CRUD endpoints, build the form validation) so they could learn the craft while doing something genuinely useful. It wasn't charity. It was an apprenticeship model that happened to also ship code.
+
+The problem is that "small bugs, CRUD endpoints, form validation" is exactly the category of work AI tools have gotten frighteningly good at. That's not a coincidence. It's the well-defined, low-ambiguity work that both juniors and language models are best suited for, which used to be a feature and is now a collision.
+
+So the rungs that used to exist at the bottom of the ladder are quietly being sawed off. Not because companies decided juniors were worthless, but because the cheapest way to get that specific slice of work done stopped being a person.
+
+## The training data problem, except it's people
+
+Here's the part that keeps me up at night. Large language models got good by training on an enormous amount of code written by humans, much of it by developers who started as juniors, made mistakes, got code review, and slowly became seniors. That entire pipeline (junior writes flawed thing, senior explains why, junior improves) is how expertise has always been manufactured in this field.
+
+If companies stop hiring and mentoring juniors at scale, we're not just making a short-term hiring decision. We're quietly turning off the machine that produces the next generation of senior engineers. In ten years, who reviews the AI's code with the hard-won instinct that only comes from having personally broken production at 2 AM and never wanting to feel that again?
+
+![An espresso cup next to a closed laptop on an empty desk](https://images.unsplash.com/photo-1757447247562-31dd79dc4f0a?auto=format&fit=crop&w=1400&q=80)
+
+## What actually happens to the interns
+
+Talk to CS students right now and you hear a consistent story: internship postings are down, and the ones that exist are more competitive than ever, because companies figured out one AI-assisted senior can absorb the throughput of what used to take a senior plus two juniors. The internship, historically the on-ramp into the industry, is becoming a luxury good.
+
+The ones who do get in describe a strange new experience: their actual job is reviewing and prompting AI output rather than writing code from scratch, which sounds efficient until you realize it skips the exact repetition that used to build real understanding. You don't learn why a for-loop is slow by watching an AI write a fast one for you. You learn it by writing the slow one first and feeling the pain.
+
+- **Less hands-on repetition.** Muscle memory for debugging, for reading stack traces, for understanding *why* code fails, comes from doing it badly first. Skipping straight to "AI wrote it, looks fine" removes the failure that used to teach the lesson.
+- **Less mentorship bandwidth.** Senior engineers who used to spend time explaining fundamentals to juniors now spend that time reviewing AI output instead, because there's more of it and it's higher priority.
+- **A confidence gap that isn't really a skills gap yet, but is becoming one.** Juniors can produce more code than ever, faster than ever, and understand less of it than any generation before them.
+
+## The industry-wide bill comes due later
+
+None of this looks like a crisis today, and that's exactly the problem. The senior engineers currently doing the reviewing, the architecture decisions, the "wait, this will fall over at scale" calls, mostly came up through the old apprenticeship pipeline. They're fine. For now.
+
+But that pipeline has a lag of five to ten years between "junior gets hired" and "junior becomes the person everyone trusts to make the hard calls." If we hollow out the junior tier now, the bill doesn't arrive now. It arrives a decade from now, when the current cohort of seniors starts retiring or moving into management, and the industry looks around for their replacements and finds a generation that got very good at prompting and never got the chance to get good at the underlying thing.
+
+That's not a hypothetical dystopia. It's closer to what already happened in other fields that automated their own entry-level work: a hollowed-out middle that shows up as a talent shortage a decade too late to do anything quick about it.
+
+![A team collaborating around a whiteboard in a modern office](https://images.unsplash.com/photo-1758873269035-aae0e1fd3422?auto=format&fit=crop&w=1400&q=80)
+
+## What would actually help
+
+I don't think the answer is "stop using AI," because that ship has sailed and honestly shouldn't sail back. But a few things would meaningfully change the trajectory:
+
+1. **Treat junior hiring as infrastructure, not a cost center.** The apprenticeship pipeline is a long-term asset. Cutting it to hit this quarter's efficiency numbers is borrowing against a decade from now.
+2. **Redesign what junior work actually looks like.** If AI absorbs the rote tasks, juniors need deliberately harder, more supervised work earlier: not less responsibility, different responsibility.
+3. **Make code review and debugging the curriculum, not an afterthought.** If juniors aren't building instinct through repetition, someone needs to build it through deliberate practice instead.
+4. **Stop treating "ships fast with AI help" as equivalent to "understands the system."** Those are different skills, and only one of them scales into a senior engineer.
+
+## Closing thought
+
+The developers writing the sarcastic blog posts about AI (myself very much included) are mostly fine. We got our reps in before the machines got good. The people I actually worry about are the ones who were supposed to get their reps in over the next five years, on a ladder that's quietly losing rungs while nobody's officially announced it's happening.
+
+This isn't a takedown of the technology. It's a note that the industry solved a productivity problem and, in the process, created a pipeline problem it hasn't acknowledged yet. Somebody has to notice before the rungs are all gone.
