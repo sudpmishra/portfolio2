@@ -1,6 +1,7 @@
 import Script from "next/script";
 import "./globals.css";
 import "./App.css";
+import { Analytics } from "@vercel/analytics/next";
 
 const siteUrl = "https://sudeepmishra.info.np";
 const title =
@@ -115,6 +116,7 @@ export default function RootLayout({ children }) {
           {JSON.stringify(personJsonLd)}
         </Script>
         {children}
+        <Analytics />
         <Script id="posthog-init" strategy="afterInteractive">
           {`
             !(function (t, e) {
